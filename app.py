@@ -45,13 +45,13 @@ def predict():
             Dealer = 1 	
         Transmission=request.form['Transmission_Mannual']
         if(Transmission=='Mannual'):
-            Mannual=1
+            Manual=1
             Automatic = 0
         else:
-            Mannual=0
+            Manual=0
             Automatic = 1    										
         prediction=model.predict([[Present_Price,Kms_Driven2,Owner,Year,Dealer,Individual,CNG,Diesel,Petrol,Automatic,Manual]])
-        output=round(prediction[0],2)
+        output=round(prediction[0],5)
         if output<0:
             return render_template('index.html',prediction_texts="Sorry you cannot sell this car")
         else:
